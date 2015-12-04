@@ -1,0 +1,26 @@
+{
+  "name": "teamdata_webinterface",
+  "authors": [
+    "Mickaël Bourgier <mickael.bourgier@gmail.com>"
+  ],
+  "description": "Interface web de notre projet de traitement d'epubs distribué",
+  "main": "index.html",
+  "keywords": [
+    "teamdata",
+    "webinterface",
+    "epub",
+    "distributed"
+  ],
+  "license": "MIT", 
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "requirejs": "~2.1.22",
+    "angular-route": "~1.4.8"
+  }
+}
