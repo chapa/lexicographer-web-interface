@@ -1,11 +1,9 @@
 define([], function() {
     'use strict';
 
-    function HomeController ($scope) {
-        $scope.lead = 'Page d\'accueil';
-    }
+    function HomeController () {}
 
-    HomeController.$inject = ['$scope'];
+    HomeController.$inject = [];
 
     return HomeController;
 });

@@ -7,6 +7,10 @@ define([],function(){
                 templateUrl: 'templates/home.html',
                 controller:  'HomeController'
             })
+            .when('/requester', {
+                templateUrl: 'templates/requester.html',
+                controller:  'RequesterController'
+            })
             .otherwise({
                 redirectTo: '/'
             })
