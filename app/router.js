@@ -4,8 +4,7 @@ define([],function(){
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'templates/home.html',
-                controller:  'HomeController'
+                templateUrl: 'templates/home.html'
             })
             .when('/requester', {
                 templateUrl: 'templates/requester.html',
