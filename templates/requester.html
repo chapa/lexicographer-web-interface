@@ -1,4 +1,13 @@
-<div class="alert alert-warning" role="alert">
-    <strong>Attention !</strong> En chantier, tout le travail reste à faire :-)
-    <a href="/" class="btn btn-xs btn-default pull-right">Retour à l'accueil</a>
-</div>
+<ul class="nav nav-tabs">
+    <li role="presentation" ng-class="{active: c.constructor.name == 'StatisticsController'}">
+        <a href="/requester/statistics">Statistiques</a>
+    </li>
+    <li role="presentation" ng-class="{active: c.constructor.name == 'WordCloudController'}">
+        <a href="/requester/word-cloud">Nuage de mots</a>
+    </li>
+    <li role="presentation">
+        <a href="#">Autre chose ?</a>
+    </li>
+</ul>
+
+<div ng-include="c.templateUrl"></div>

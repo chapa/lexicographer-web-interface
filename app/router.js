@@ -6,9 +6,18 @@ define([],function(){
             .when('/', {
                 templateUrl: 'templates/home.html'
             })
+            .when('/requester/statistics', {
+                templateUrl:  'templates/requester.html',
+                controller:   'StatisticsController',
+                controllerAs: 'c'
+            })
+            .when('/requester/word-cloud', {
+                templateUrl:  'templates/requester.html',
+                controller:   'WordCloudController',
+                controllerAs: 'c'
+            })
             .when('/requester', {
-                templateUrl: 'templates/requester.html',
-                controller:  'RequesterController'
+                redirectTo: '/requester/statistics'
             })
             .otherwise({
                 redirectTo: '/'

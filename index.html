@@ -23,10 +23,10 @@
 
                 <div class="collapse navbar-collapse" id="top-navbar-collapse">
                     <ul class="nav navbar-nav" ng-controller="TopbarController as c">
-                        <li ng-class="{active: c.isActive('/')}">
+                        <li ng-class="{active: c.routeMatch('^/$')}">
                             <a ng-href="/">Accueil</a>
                         </li>
-                        <li ng-class="{active: c.isActive('/requester')}">
+                        <li ng-class="{active: c.routeMatch('^/requester')}">
                             <a ng-href="/requester">Interface de requêtes</a>
                         </li>
                     </ul>

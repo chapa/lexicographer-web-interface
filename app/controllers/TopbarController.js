@@ -2,8 +2,8 @@ define([], function() {
     'use strict';
 
     function TopbarController ($location) {
-        this.isActive = function (route) {
-            return route === $location.path();
+        this.routeMatch = function (route) {
+            return (new RegExp(route)).test($location.path());
         }
     }
 

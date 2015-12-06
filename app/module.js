@@ -1,13 +1,15 @@
 define([
     'app/router',
     'app/controllers/TopbarController',
-    'app/controllers/RequesterController'
-], function(router, TopbarController, RequesterController) {
+    'app/controllers/StatisticsController',
+    'app/controllers/WordCloudController'
+], function(router, TopbarController, StatisticsController, WordCloudController) {
     'use strict';
 
     var app = angular.module('app', ['ngRoute']);
 
     app.config(router);
     app.controller('TopbarController', TopbarController);
-    app.controller('RequesterController', RequesterController);
+    app.controller('StatisticsController', StatisticsController);
+    app.controller('WordCloudController', WordCloudController);
 });
