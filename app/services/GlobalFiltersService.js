@@ -4,7 +4,9 @@ define([], function() {
     function GlobalFiltersService () {
         var defaults = {
             startDate: 'start',
-            endDate:   'end'
+            endDate:   'end',
+            genre:     null,
+            author:    null
         };
 
         angular.forEach(defaults, function (value, key) {

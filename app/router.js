@@ -6,6 +6,11 @@ define([],function(){
             .when('/', {
                 templateUrl: 'templates/home.html'
             })
+            .when('/requester/dashboard', {
+                templateUrl:  'templates/requester.html',
+                controller:   'DashboardController',
+                controllerAs: 'c'
+            })
             .when('/requester/statistics', {
                 templateUrl:  'templates/requester.html',
                 controller:   'StatisticsController',
@@ -16,8 +21,13 @@ define([],function(){
                 controller:   'WordCloudController',
                 controllerAs: 'c'
             })
+            .when('/requester/semantic-fields', {
+                templateUrl:  'templates/requester.html',
+                controller:   'SemanticFieldsController',
+                controllerAs: 'c'
+            })
             .when('/requester', {
-                redirectTo: '/requester/statistics'
+                redirectTo: '/requester/dashboard'
             })
             .otherwise({
                 redirectTo: '/'
