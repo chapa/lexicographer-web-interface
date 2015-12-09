@@ -21,6 +21,7 @@
     "angular": "~1.4.8",
     "bootstrap": "~3.3.6",
     "requirejs": "~2.1.22",
-    "angular-route": "~1.4.8"
+    "angular-route": "~1.4.8",
+    "angular-bootstrap": "~0.14.3"
   }
 }

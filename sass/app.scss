@@ -9,3 +9,21 @@ body {
 .form-group.last {
     margin-bottom: 0;
 }
+
+#dashboard {
+    .stat {
+        .value, .caption {
+            margin: 0;
+            text-align: center;
+        }
+
+        .value {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        .caption {
+            font-size: 1.25em;
+        }
+    }
+}

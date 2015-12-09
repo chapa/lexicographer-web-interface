@@ -9,7 +9,7 @@ define([
 ], function(router, TopbarController, DashboardController, StatisticsController, WordCloudController, SemanticFieldsController, GlobalFiltersService) {
     'use strict';
 
-    var app = angular.module('app', ['ngRoute']);
+    var app = angular.module('app', ['ngRoute', 'ui.bootstrap']);
 
     app.config(router);
     app.controller('TopbarController',         TopbarController);
