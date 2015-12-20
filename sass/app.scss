@@ -27,3 +27,18 @@ body {
         }
     }
 }
+
+#word-cloud {
+    form {
+        margin-bottom: 20px;
+
+        input[type="number"] {
+            width: 75px;
+            text-align: right;
+        }
+    }
+
+    [td-word-cloud] {
+        overflow-x: auto;
+    }
+}

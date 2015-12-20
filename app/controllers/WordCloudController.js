@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
 
-    function WordCloudController (GlobalFiltersService) {
+    function WordCloudController ($scope, GlobalFiltersService) {
         var vm = this;
 
         vm.templateUrl   = 'templates/word-cloud.html'
@@ -12,9 +12,15 @@ define([], function() {
             'Addis-beba': 8, 'Andromanie': 7, 'Brelic': 15, 'Convulsionnaire': 15, 'Crouttésiens': 19,
             'Dépolluer': 2, 'Flipper': 4, 'Labéliser': 6, 'Pension': 17, 'Tesseract': 17
         };
+        vm.reloadWordCloud = reloadWordCloud;
+
+        function reloadWordCloud (e) {
+            e.preventDefault();
+            $scope.$broadcast('app.word-cloud.reload');
+        }
     }
 
-    WordCloudController.$inject = ['GlobalFiltersService'];
+    WordCloudController.$inject = ['$scope', 'GlobalFiltersService'];
 
     return WordCloudController;
 });

@@ -6,7 +6,9 @@ define([], function() {
             restrict: 'EA',
             template: '<canvas></canvas>',
             scope: {
-                words: '=tdWordCloud'
+                words: '=tdWordCloud',
+                width: '=',
+                height: '='
             },
             link: linkFunc,
             controller: ['$scope', controllerFunc],
@@ -43,6 +45,10 @@ define([], function() {
                 drawWordCloud();
             });
 
+            $scope.$on('app.word-cloud.reload', function () {
+                drawWordCloud();
+            });
+
             function setElement (_element_) {
                 element = _element_;
             }
@@ -60,8 +66,7 @@ define([], function() {
                     weightFactor: function (size) {
                         return size * element.attr('width') / 100;
                     },
-                    rotateRatio: 0.5,
-                    backgroundColor: '#ddd'
+                    rotateRatio: 0.5
                 });
             }
         }
