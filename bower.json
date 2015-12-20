@@ -11,7 +11,7 @@
     "epub",
     "distributed"
   ],
-  "license": "MIT", 
+  "license": "MIT",
   "private": true,
   "ignore": [
     "**/.*",
@@ -22,6 +22,7 @@
     "bootstrap": "~3.3.6",
     "requirejs": "~2.1.22",
     "angular-route": "~1.4.8",
-    "angular-bootstrap": "~0.14.3"
+    "angular-bootstrap": "~0.14.3",
+    "wordcloud2": "git://github.com/timdream/wordcloud2.js#~1.0.1"
   }
 }
