@@ -2,6 +2,11 @@ define([], function() {
     'use strict';
 
     function GlobalFiltersService () {
+        var service = {
+            hasChanged: hasChanged,
+            reset: reset
+        };
+
         var defaults = {
             startDate: 'start',
             endDate:   'end',
@@ -10,15 +15,17 @@ define([], function() {
         };
 
         angular.forEach(defaults, function (value, key) {
-            this[key] = value;
-        }, this);
+            service[key] = value;
+        });
 
-        this.hasChanged = function (filterName) {
-            return this[filterName] !== defaults[filterName];
+        return service;
+
+        function hasChanged (filterName) {
+            return service[filterName] !== defaults[filterName];
         };
 
-        this.reset = function (filterName) {
-            this[filterName] = defaults[filterName];
+        function reset (filterName) {
+            service[filterName] = defaults[filterName];
         };
     }
 

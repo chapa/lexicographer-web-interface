@@ -2,7 +2,9 @@ define([], function() {
     'use strict';
 
     function TopbarController ($location) {
-        this.routeMatch = function (route) {
+        var vm = this;
+
+        vm.routeMatch = function (route) {
             return (new RegExp(route)).test($location.path());
         }
     }

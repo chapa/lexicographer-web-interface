@@ -9,22 +9,22 @@ define([],function(){
             .when('/requester/dashboard', {
                 templateUrl:  'templates/requester.html',
                 controller:   'DashboardController',
-                controllerAs: 'c'
+                controllerAs: 'vm'
             })
             .when('/requester/statistics', {
                 templateUrl:  'templates/requester.html',
                 controller:   'StatisticsController',
-                controllerAs: 'c'
+                controllerAs: 'vm'
             })
             .when('/requester/word-cloud', {
                 templateUrl:  'templates/requester.html',
                 controller:   'WordCloudController',
-                controllerAs: 'c'
+                controllerAs: 'vm'
             })
             .when('/requester/semantic-fields', {
                 templateUrl:  'templates/requester.html',
                 controller:   'SemanticFieldsController',
-                controllerAs: 'c'
+                controllerAs: 'vm'
             })
             .when('/requester', {
                 redirectTo: '/requester/dashboard'

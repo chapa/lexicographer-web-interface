@@ -2,8 +2,10 @@ define([], function() {
     'use strict';
 
     function DashboardController (GlobalFiltersService) {
-        this.templateUrl   = 'templates/dashboard.html';
-        this.globalFilters = GlobalFiltersService;
+        var vm = this;
+
+        vm.templateUrl   = 'templates/dashboard.html';
+        vm.globalFilters = GlobalFiltersService;
     }
 
     DashboardController.$inject = ['GlobalFiltersService'];

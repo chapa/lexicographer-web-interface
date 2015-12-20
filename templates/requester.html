@@ -7,10 +7,10 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label for="global-filter-start-date">Date de début</label>
-                    <div ng-class="{'input-group': c.globalFilters.hasChanged('startDate')}">
-                        <input type="text" class="form-control" id="global-filter-start-date" ng-model="c.globalFilters.startDate">
-                        <span class="input-group-btn" ng-show="c.globalFilters.hasChanged('startDate')">
-                            <a href="#" class="btn btn-default" ng-click="c.globalFilters.reset('startDate')">
+                    <div ng-class="{'input-group': vm.globalFilters.hasChanged('startDate')}">
+                        <input type="text" class="form-control" id="global-filter-start-date" ng-model="vm.globalFilters.startDate">
+                        <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('startDate')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('startDate')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -18,10 +18,10 @@
                 </div>
                 <div class="form-group">
                     <label for="global-filter-end-date">Date de fin</label>
-                    <div ng-class="{'input-group': c.globalFilters.hasChanged('endDate')}">
-                        <input type="text" class="form-control" id="global-filter-end-date" ng-model="c.globalFilters.endDate">
-                        <span class="input-group-btn" ng-show="c.globalFilters.hasChanged('endDate')">
-                            <a href="#" class="btn btn-default" ng-click="c.globalFilters.reset('endDate')">
+                    <div ng-class="{'input-group': vm.globalFilters.hasChanged('endDate')}">
+                        <input type="text" class="form-control" id="global-filter-end-date" ng-model="vm.globalFilters.endDate">
+                        <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('endDate')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('endDate')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -29,10 +29,10 @@
                 </div>
                 <div class="form-group">
                     <label for="global-filter-genre">Genre littéraire</label>
-                    <div ng-class="{'input-group': c.globalFilters.hasChanged('genre')}">
-                        <input type="text" class="form-control" id="global-filter-genre" ng-model="c.globalFilters.genre">
-                        <span class="input-group-btn" ng-show="c.globalFilters.hasChanged('genre')">
-                            <a href="#" class="btn btn-default" ng-click="c.globalFilters.reset('genre')">
+                    <div ng-class="{'input-group': vm.globalFilters.hasChanged('genre')}">
+                        <input type="text" class="form-control" id="global-filter-genre" ng-model="vm.globalFilters.genre">
+                        <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('genre')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('genre')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -40,10 +40,10 @@
                 </div>
                 <div class="form-group last">
                     <label for="global-filter-author">Auteur</label>
-                    <div ng-class="{'input-group': c.globalFilters.hasChanged('author')}">
-                        <input type="text" class="form-control" id="global-filter-author" ng-model="c.globalFilters.author">
-                        <span class="input-group-btn" ng-show="c.globalFilters.hasChanged('author')">
-                            <a href="#" class="btn btn-default" ng-click="c.globalFilters.reset('author')">
+                    <div ng-class="{'input-group': vm.globalFilters.hasChanged('author')}">
+                        <input type="text" class="form-control" id="global-filter-author" ng-model="vm.globalFilters.author">
+                        <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('author')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('author')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -54,20 +54,20 @@
     </div>
     <div class="col-md-8">
         <ul class="nav nav-tabs">
-            <li role="presentation" ng-class="{active: c.constructor.name == 'DashboardController'}">
+            <li role="presentation" ng-class="{active: vm.constructor.name == 'DashboardController'}">
                 <a href="/requester/dashboard">Tableau de bord</a>
             </li>
-            <li role="presentation" ng-class="{active: c.constructor.name == 'StatisticsController'}">
+            <li role="presentation" ng-class="{active: vm.constructor.name == 'StatisticsController'}">
                 <a href="/requester/statistics">Statistiques</a>
             </li>
-            <li role="presentation" ng-class="{active: c.constructor.name == 'WordCloudController'}">
+            <li role="presentation" ng-class="{active: vm.constructor.name == 'WordCloudController'}">
                 <a href="/requester/word-cloud">Nuage de mots</a>
             </li>
-            <li role="presentation" ng-class="{active: c.constructor.name == 'SemanticFieldsController'}">
+            <li role="presentation" ng-class="{active: vm.constructor.name == 'SemanticFieldsController'}">
                 <a href="/requester/semantic-fields">Champs sémantiques</a>
             </li>
         </ul>
 
-        <div ng-include="c.templateUrl"></div>
+        <div ng-include="vm.templateUrl"></div>
     </div>
 </div>

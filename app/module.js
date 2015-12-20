@@ -17,5 +17,5 @@ define([
     app.controller('StatisticsController',     StatisticsController);
     app.controller('WordCloudController',      WordCloudController);
     app.controller('SemanticFieldsController', SemanticFieldsController);
-    app.service('GlobalFiltersService', GlobalFiltersService);
+    app.factory('GlobalFiltersService', GlobalFiltersService);
 });
