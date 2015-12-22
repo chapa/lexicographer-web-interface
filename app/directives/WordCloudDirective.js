@@ -11,7 +11,7 @@ define([], function() {
                 height: '='
             },
             link: linkFunc,
-            controller: ['$scope', controllerFunc],
+            controller: ['$scope', '$window', controllerFunc],
             controllerAs: 'vm',
             bindToController: true
         };
@@ -26,12 +26,12 @@ define([], function() {
             vm.setElement(canvas);
         }
 
-        function controllerFunc ($scope) {
+        function controllerFunc ($scope, $window) {
             var vm = this;
 
             vm.setElement = setElement;
 
-            var element = null, words = [];
+            var element = null, words = [], w = angular.element($window);
 
             $scope.$watch('vm.words', function (_words_) {
                 if (element === null) {
@@ -48,6 +48,11 @@ define([], function() {
             $scope.$on('app.word-cloud.reload', function () {
                 drawWordCloud();
             });
+
+            w.on('resize', bindWindowResize);
+            $scope.$on('$destroy', function () {
+                w.off('resize', bindWindowResize);
+            })
 
             function setElement (_element_) {
                 element = _element_;
@@ -68,6 +73,10 @@ define([], function() {
                     },
                     rotateRatio: 0.5
                 });
+            }
+
+            function bindWindowResize () {
+                $scope.$apply('vm.width = ' + element.parent().width());
             }
         }
     }
