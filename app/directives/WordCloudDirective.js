@@ -21,7 +21,7 @@ define([], function() {
             var canvas = element.find('canvas');
 
             vm.width = element[0].offsetWidth;
-            vm.height = 300;
+            vm.height = 400;
 
             vm.setElement(canvas);
         }
@@ -69,9 +69,11 @@ define([], function() {
                     list: words,
                     gridSize: Math.round(16 * element.attr('width') / 1024),
                     weightFactor: function (size) {
-                        return size * element.attr('width') / 100;
+                        return size * element.attr('width') / 250;
                     },
-                    rotateRatio: 0.5
+                    rotateRatio: 0.5,
+                    wait: 30,
+                    ellipticity: 1
                 });
             }
 

@@ -7,10 +7,10 @@ define([], function() {
         vm.templateUrl   = 'templates/word-cloud.html'
         vm.globalFilters = GlobalFiltersService;
         vm.words = {
-            'Cadoule': 1, 'Embrasseur': 17, 'Enrichissement': 11, 'Fétiaux': 5, 'Microrem': 20,
-            'Parution': 7, 'Picoreurs': 10, 'Reparaître': 3, 'Rééchantillonner': 4, 'Youd': 16,
-            'Addis-beba': 8, 'Andromanie': 7, 'Brelic': 15, 'Convulsionnaire': 15, 'Crouttésiens': 19,
-            'Dépolluer': 2, 'Flipper': 4, 'Labéliser': 6, 'Pension': 17, 'Tesseract': 17
+            'Flipper': 20, 'Labéliser': 19, 'Andromanie': 19, 'Rééchantillonner': 17, 'Fétiaux': 15,
+            'Parution': 13, 'Enrichissement': 13, 'Brelic': 13, 'Addis-beba': 13, 'Convulsionnaire': 12,
+            'Cadoule': 12, 'Reparaître': 11, 'Picoreurs': 11, 'Pension': 9, 'Crouttésiens': 8,
+            'Microrem': 6, 'Dépolluer': 6, 'Embrasseur': 4, 'Tesseract': 3, 'Youd': 1
         };
         vm.reloadWordCloud = reloadWordCloud;
 
