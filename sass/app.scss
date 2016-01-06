@@ -10,6 +10,12 @@ body {
     margin-bottom: 0;
 }
 
+.input-group-btn:not(:first-child):not(:last-child) .btn {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
 #dashboard {
     .stat {
         .value, .caption {

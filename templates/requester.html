@@ -7,9 +7,15 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label for="global-filter-start-date">Date de début</label>
-                    <div ng-class="{'input-group': vm.globalFilters.hasChanged('startDate')}">
-                        <input type="text" class="form-control" id="global-filter-start-date" ng-model="vm.globalFilters.startDate">
-                        <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('startDate')">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="global-filter-start-date" ng-model="vm.globalFilters.startDate"
+                               uib-datepicker-popup="dd/MM/yyyy" is-open="startDatePickerOpen">
+                        <span class="input-group-btn">
+                            <a href="#" class="btn btn-default" ng-click="startDatePickerOpen = !startDatePickerOpen">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </a>
+                        </span>
+                        <span class="input-group-btn" ng-if="vm.globalFilters.hasChanged('startDate')">
                             <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('startDate')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
@@ -18,9 +24,15 @@
                 </div>
                 <div class="form-group">
                     <label for="global-filter-end-date">Date de fin</label>
-                    <div ng-class="{'input-group': vm.globalFilters.hasChanged('endDate')}">
-                        <input type="text" class="form-control" id="global-filter-end-date" ng-model="vm.globalFilters.endDate">
-                        <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('endDate')">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="global-filter-end-date" ng-model="vm.globalFilters.endDate"
+                               uib-datepicker-popup="dd/MM/yyyy" is-open="endDatePickerOpen">
+                        <span class="input-group-btn">
+                            <a href="#" class="btn btn-default" ng-click="endDatePickerOpen = !endDatePickerOpen">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </a>
+                        </span>
+                        <span class="input-group-btn" ng-if="vm.globalFilters.hasChanged('endDate')">
                             <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('endDate')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>

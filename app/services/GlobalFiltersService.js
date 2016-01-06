@@ -8,11 +8,13 @@ define([], function() {
         };
 
         var defaults = {
-            startDate: 'start',
-            endDate:   'end',
+            startDate: new Date(),
+            endDate:   new Date(),
             genre:     null,
             author:    null
         };
+        defaults.startDate.setHours(0, 0, 0, 0);
+        defaults.endDate.setHours(0, 0, 0, 0);
 
         angular.forEach(defaults, function (value, key) {
             service[key] = value;
@@ -21,7 +23,11 @@ define([], function() {
         return service;
 
         function hasChanged (filterName) {
-            return service[filterName] !== defaults[filterName];
+            if (service[filterName] instanceof Date) {
+                return service[filterName].getTime() !== defaults[filterName].getTime();
+            } else {
+                return service[filterName] !== defaults[filterName];
+            }
         };
 
         function reset (filterName) {
