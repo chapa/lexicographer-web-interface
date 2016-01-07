@@ -6,41 +6,41 @@
 <div id="dashboard" class="row">
     <div class="col-md-4">
         <div class="well stat">
-            <h1 class="value">382</h1>
+            <h1 class="value">{{ vm.data.nb_books }}</h1>
             <p class="caption">Livres</p>
         </div>
     </div>
     <div class="col-md-4">
         <div class="well stat">
-            <h1 class="value">159</h1>
+            <h1 class="value">{{ vm.data.nb_authors }}</h1>
             <p class="caption">Auteurs</p>
         </div>
     </div>
     <div class="col-md-4">
         <div class="well stat">
-            <h1 class="value">12</h1>
+            <h1 class="value">{{ vm.data.nb_genres }}</h1>
             <p class="caption">Genres</p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="well stat" uib-tooltip="Nombre total de mots dans la collection (pour un vocabulaire de 281 mots)" tooltip-placement="bottom">
-            <h1 class="value">8170</h1>
+        <div class="well stat" uib-tooltip="Nombre total de mots dans la collection (pour un vocabulaire de {{ vm.data.vocabulary_size }} mots)" tooltip-placement="bottom">
+            <h1 class="value">{{ vm.data.nb_words }}</h1>
             <p class="caption">
                 Mots
             </p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="well stat" uib-tooltip="Plus exactement le 20/03/1739" tooltip-placement="bottom">
-            <h1 class="value">1739</h1>
+        <div class="well stat" uib-tooltip="Plus exactement le {{ vm.data.date_first_book | date : 'dd/MM/yyyy' }}" tooltip-placement="bottom">
+            <h1 class="value">{{ vm.data.date_first_book | date : 'yyyy' }}</h1>
             <p class="caption">
                 <span class="glyphicon glyphicon-calendar"></span> Premier livre
             </p>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="well stat" uib-tooltip="Plus exactement le 08/11/2015" tooltip-placement="bottom">
-            <h1 class="value">2015</h1>
+        <div class="well stat" uib-tooltip="Plus exactement le {{ vm.data.date_last_book | date : 'dd/MM/yyyy' }}" tooltip-placement="bottom">
+            <h1 class="value">{{ vm.data.date_last_book | date : 'yyyy' }}</h1>
             <p class="caption">
                 <span class="glyphicon glyphicon-calendar"></span> Dernier livre
             </p>

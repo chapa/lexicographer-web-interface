@@ -10,8 +10,8 @@ define([],function(){
                 templateUrl:  'templates/requester.html',
                 controller:   'DashboardController',
                 controllerAs: 'vm',
-                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
-                    return GlobalFiltersService.getPromise();
+                resolve: ['$q', 'GlobalFiltersService', 'DashboardService', function ($q, GlobalFiltersService, DashboardService) {
+                    return $q.all([GlobalFiltersService.getPromise(), DashboardService.getPromise()]);
                 }]
             })
             .when('/requester/statistics', {
