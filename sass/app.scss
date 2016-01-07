@@ -1,3 +1,5 @@
+@import 'compass/css3';
+
 body {
     padding-top: 70px;
 }
@@ -10,10 +12,42 @@ body {
     margin-bottom: 0;
 }
 
+.input-group .form-control {
+    z-index: 3;
+}
+
 .input-group-btn:not(:first-child):not(:last-child) .btn {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
+}
+
+@include keyframes(glyphicon-spin) {
+    0% {
+        @include rotate(0);
+    }
+    100% {
+        @include rotate(359deg);
+    }
+}
+
+.glyphicon-spin {
+    @include animation(glyphicon-spin 2s infinite linear);
+}
+
+#general-filters {
+    select {
+        -webkit-appearance: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    #authors-loading-feedback {
+        right: 40px;
+        z-index: 4;
+    }
 }
 
 #dashboard {

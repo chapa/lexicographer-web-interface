@@ -9,22 +9,34 @@ define([],function(){
             .when('/requester/dashboard', {
                 templateUrl:  'templates/requester.html',
                 controller:   'DashboardController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
+                    return GlobalFiltersService.getPromise();
+                }]
             })
             .when('/requester/statistics', {
                 templateUrl:  'templates/requester.html',
                 controller:   'StatisticsController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
+                    return GlobalFiltersService.getPromise();
+                }]
             })
             .when('/requester/word-cloud', {
                 templateUrl:  'templates/requester.html',
                 controller:   'WordCloudController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
+                    return GlobalFiltersService.getPromise();
+                }]
             })
             .when('/requester/semantic-fields', {
                 templateUrl:  'templates/requester.html',
                 controller:   'SemanticFieldsController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
+                    return GlobalFiltersService.getPromise();
+                }]
             })
             .when('/requester', {
                 redirectTo: '/requester/dashboard'

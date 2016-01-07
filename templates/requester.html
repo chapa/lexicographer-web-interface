@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4">
+    <div id="general-filters" class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Filtres globaux</h3>
@@ -42,7 +42,10 @@
                 <div class="form-group">
                     <label for="global-filter-genre">Genre littéraire</label>
                     <div ng-class="{'input-group': vm.globalFilters.hasChanged('genre')}">
-                        <input type="text" class="form-control" id="global-filter-genre" ng-model="vm.globalFilters.genre">
+                        <select id="global-filter-genre" class="form-control" ng-model="vm.globalFilters.genre"
+                                ng-options="option.name for option in vm.globalFilters.getGenres()">
+                            <option value="">Tous les genres</option>
+                        </select>
                         <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('genre')">
                             <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('genre')">
                                 <span class="glyphicon glyphicon-repeat"></span>
@@ -50,16 +53,19 @@
                         </span>
                     </div>
                 </div>
-                <div class="form-group last">
+                <div class="form-group has-feedback last" ng-class="{'has-error': !(vm.globalFilters.author || vm.globalFilters.author === null)}">
                     <label for="global-filter-author">Auteur</label>
                     <div ng-class="{'input-group': vm.globalFilters.hasChanged('author')}">
-                        <input type="text" class="form-control" id="global-filter-author" ng-model="vm.globalFilters.author">
+                        <input type="text" class="form-control" id="global-filter-author" ng-model="vm.globalFilters.author"
+                               uib-typeahead="author as author.name for author in vm.globalFilters.getAuthors($viewValue)"
+                               typeahead-loading="loadingAuthors" typeahead-editable="false" typeahead-select-on-exact="true">
                         <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('author')">
                             <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('author')">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
                     </div>
+                    <span id="authors-loading-feedback" class="glyphicon glyphicon-repeat glyphicon-spin form-control-feedback" ng-show="loadingAuthors"></span>
                 </div>
             </div>
         </div>

@@ -1,10 +1,13 @@
 define([], function() {
     'use strict';
 
-    function GlobalFiltersService () {
+    function GlobalFiltersService ($http) {
         var service = {
+            getPromise: getPromise,
+            getGenres:  getGenres,
+            getAuthors: getAuthors,
             hasChanged: hasChanged,
-            reset: reset
+            reset:      reset
         };
 
         var defaults = {
@@ -16,11 +19,33 @@ define([], function() {
         defaults.startDate.setHours(0, 0, 0, 0);
         defaults.endDate.setHours(0, 0, 0, 0);
 
-        angular.forEach(defaults, function (value, key) {
-            service[key] = value;
+        var genres = [];
+        var promise = $http.get('data/genres.json').then(function (response) {
+            genres = response.data;
+
+            angular.forEach(defaults, function (value, key) {
+                service[key] = value;
+            });
         });
 
         return service;
+
+        function getPromise () {
+            return promise;
+        }
+
+        function getGenres () {
+            return genres;
+        }
+
+        function getAuthors (search) {
+            return $http.get('data/authors.json').then(function (response) {
+                return response.data.filter(function (author) {
+                    // Lors de l'appel à l'API, les données n'auront pas à être filtrées
+                    return author.name.indexOf(search) > -1;
+                });
+            });
+        }
 
         function hasChanged (filterName) {
             if (service[filterName] instanceof Date) {
@@ -35,7 +60,7 @@ define([], function() {
         };
     }
 
-    GlobalFiltersService.$inject = [];
+    GlobalFiltersService.$inject = ['$http'];
 
     return GlobalFiltersService;
 });
