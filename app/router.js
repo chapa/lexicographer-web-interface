@@ -26,8 +26,8 @@ define([],function(){
                 templateUrl:  'templates/requester.html',
                 controller:   'WordCloudController',
                 controllerAs: 'vm',
-                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
-                    return GlobalFiltersService.getPromise();
+                resolve: ['$q', 'GlobalFiltersService', 'WordCloudService', function ($q, GlobalFiltersService, WordCloudService) {
+                    return $q.all([GlobalFiltersService.getPromise(), WordCloudService.getPromise()]);
                 }]
             })
             .when('/requester/semantic-fields', {

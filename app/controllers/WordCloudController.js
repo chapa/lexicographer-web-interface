@@ -1,18 +1,19 @@
 define([], function() {
     'use strict';
 
-    function WordCloudController ($scope, GlobalFiltersService) {
+    function WordCloudController ($scope, GlobalFiltersService, WordCloudService) {
         var vm = this;
 
         vm.templateUrl   = 'templates/word-cloud.html'
         vm.globalFilters = GlobalFiltersService;
-        vm.words = {
-            'Flipper': 20, 'Labéliser': 19, 'Andromanie': 19, 'Rééchantillonner': 17, 'Fétiaux': 15,
-            'Parution': 13, 'Enrichissement': 13, 'Brelic': 13, 'Addis-beba': 13, 'Convulsionnaire': 12,
-            'Cadoule': 12, 'Reparaître': 11, 'Picoreurs': 11, 'Pension': 9, 'Crouttésiens': 8,
-            'Microrem': 6, 'Dépolluer': 6, 'Embrasseur': 4, 'Tesseract': 3, 'Youd': 1
-        };
+        
+        vm.words = WordCloudService.getData();
+        WordCloudService.onUpdate(onDataUpdated);
         vm.reloadWordCloud = reloadWordCloud;
+
+        function onDataUpdated (data) {
+            vm.words = data;
+        }
 
         function reloadWordCloud (e) {
             e.preventDefault();
@@ -20,7 +21,7 @@ define([], function() {
         }
     }
 
-    WordCloudController.$inject = ['$scope', 'GlobalFiltersService'];
+    WordCloudController.$inject = ['$scope', 'GlobalFiltersService', 'WordCloudService'];
 
     return WordCloudController;
 });
