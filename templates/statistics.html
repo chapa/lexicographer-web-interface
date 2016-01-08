@@ -8,21 +8,21 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title">
-                    <span class="badge pull-right">8170</span>
+                    <span class="badge pull-right">{{ vm.data.words.count }}</span>
                     Mots
                 </h1>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <span class="badge">6</span>
+                    <span class="badge">{{ vm.data.words.avg_size }}</span>
                     Taille moyenne des mots
                 </li>
                 <li class="list-group-item">
-                    <span class="badge">10</span>
+                    <span class="badge">{{ vm.data.words.avg_in_sentence }}</span>
                     Nombre moyen de mots dans les phrases
                 </li>
                 <li class="list-group-item">
-                    <span class="badge">382</span>
+                    <span class="badge">{{ vm.data.words.avg_in_books }}</span>
                     Nombre moyen de mots dans les livres
                 </li>
             </ul>
@@ -35,13 +35,13 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title">
-                    <span class="badge pull-right">835</span>
+                    <span class="badge pull-right">{{ vm.data.sentences.count }}</span>
                     Phrases
                 </h1>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <span class="badge">43</span>
+                    <span class="badge">{{ vm.data.sentences.avg_in_books }}</span>
                     Nombre moyen de phrases dans les livres
                 </li>
             </ul>

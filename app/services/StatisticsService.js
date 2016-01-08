@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
 
-    function DashboardService ($http, $q, GlobalFiltersService) {
+    function StatisticsService ($http, $q, GlobalFiltersService) {
         var service = {
             getPromise: getPromise,
             getData:    getData,
@@ -24,9 +24,7 @@ define([], function() {
 
         function update () {
             // Utilisation de GlobalFiltersService pour récupérer les paramètres de la requête à l'API
-            return $http.get('data/dashboard.json').then(function (response) {
-                response.data.date_first_book = new Date(response.data.date_first_book);
-                response.data.date_last_book = new Date(response.data.date_last_book);
+            return $http.get('data/statistics.json').then(function (response) {
                 setData(response.data);
             });
         }
@@ -51,7 +49,7 @@ define([], function() {
         }
     }
 
-    DashboardService.$inject = ['$http', '$q', 'GlobalFiltersService'];
+    StatisticsService.$inject = ['$http', '$q', 'GlobalFiltersService'];
 
-    return DashboardService;
+    return StatisticsService;
 });

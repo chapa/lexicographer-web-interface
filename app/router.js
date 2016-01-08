@@ -18,8 +18,8 @@ define([],function(){
                 templateUrl:  'templates/requester.html',
                 controller:   'StatisticsController',
                 controllerAs: 'vm',
-                resolve: ['GlobalFiltersService', function (GlobalFiltersService) {
-                    return GlobalFiltersService.getPromise();
+                resolve: ['$q', 'GlobalFiltersService', 'StatisticsService', function ($q, GlobalFiltersService, StatisticsService) {
+                    return $q.all([GlobalFiltersService.getPromise(), StatisticsService.getPromise()]);
                 }]
             })
             .when('/requester/word-cloud', {
