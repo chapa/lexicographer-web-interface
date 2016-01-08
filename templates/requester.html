@@ -11,12 +11,14 @@
                         <input type="text" class="form-control" id="global-filter-start-date" ng-model="vm.globalFilters.startDate"
                                uib-datepicker-popup="dd/MM/yyyy" is-open="startDatePickerOpen">
                         <span class="input-group-btn">
-                            <a href="#" class="btn btn-default" ng-click="startDatePickerOpen = !startDatePickerOpen">
+                            <a href="#" class="btn btn-default" ng-click="startDatePickerOpen = !startDatePickerOpen"
+                               uib-tooltip="Afficher&nbsp;le calendrier" tooltip-placement="bottom" tooltip-append-to-body="true">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </a>
                         </span>
                         <span class="input-group-btn" ng-if="vm.globalFilters.hasChanged('startDate')">
-                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('startDate')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('startDate')"
+                               uib-tooltip="Réinitialiser" tooltip-placement="bottom" tooltip-append-to-body="true">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -28,12 +30,14 @@
                         <input type="text" class="form-control" id="global-filter-end-date" ng-model="vm.globalFilters.endDate"
                                uib-datepicker-popup="dd/MM/yyyy" is-open="endDatePickerOpen">
                         <span class="input-group-btn">
-                            <a href="#" class="btn btn-default" ng-click="endDatePickerOpen = !endDatePickerOpen">
+                            <a href="#" class="btn btn-default" ng-click="endDatePickerOpen = !endDatePickerOpen"
+                                uib-tooltip="Afficher&nbsp;le calendrier" tooltip-placement="bottom" tooltip-append-to-body="true">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </a>
                         </span>
                         <span class="input-group-btn" ng-if="vm.globalFilters.hasChanged('endDate')">
-                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('endDate')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('endDate')"
+                               uib-tooltip="Réinitialiser" tooltip-placement="bottom" tooltip-append-to-body="true">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -47,7 +51,8 @@
                             <option value="">Tous les genres</option>
                         </select>
                         <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('genre')">
-                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('genre')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('genre')"
+                               uib-tooltip="Réinitialiser" tooltip-placement="bottom" tooltip-append-to-body="true">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
@@ -60,7 +65,8 @@
                                uib-typeahead="author as author.name for author in vm.globalFilters.getAuthors($viewValue)"
                                typeahead-loading="loadingAuthors" typeahead-editable="false" typeahead-select-on-exact="true">
                         <span class="input-group-btn" ng-show="vm.globalFilters.hasChanged('author')">
-                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('author')">
+                            <a href="#" class="btn btn-default" ng-click="vm.globalFilters.reset('author')"
+                               uib-tooltip="Réinitialiser" tooltip-placement="bottom" tooltip-append-to-body="true">
                                 <span class="glyphicon glyphicon-repeat"></span>
                             </a>
                         </span>
