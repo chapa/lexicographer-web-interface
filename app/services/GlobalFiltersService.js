@@ -11,21 +11,24 @@ define([], function() {
         };
 
         var defaults = {
-            startDate: new Date(),
-            endDate:   new Date(),
+            startDate: null,
+            endDate:   null,
             genre:     null,
             author:    null
         };
-        defaults.startDate.setHours(0, 0, 0, 0);
-        defaults.endDate.setHours(0, 0, 0, 0);
 
         var genres = [];
-        var promise = $http.get('data/genres.json').then(function (response) {
-            genres = response.data;
+        var promise = $http.get('data/ends_dates.json').then(function (response) {
+            defaults.startDate = new Date(response.data.first_date + ' 0:0');
+            defaults.endDate = new Date(response.data.last_date + ' 0:0');
 
-            angular.forEach(defaults, function (value, key) {
-                service[key] = value;
-            });
+            return $http.get('data/genres.json').then(function (response) {
+                genres = response.data;
+
+                angular.forEach(defaults, function (value, key) {
+                    service[key] = value;
+                });
+            })
         });
 
         return service;
