@@ -23,8 +23,9 @@ define([], function() {
         }
 
         function update () {
-            // Utilisation de GlobalFiltersService pour récupérer les paramètres de la requête à l'API
-            return $http.get('data/word-cloud.json').then(function (response) {
+            return $http.get('/api/word-cloud', {
+                params: GlobalFiltersService.getParams()
+            }).then(function (response) {
                 setData(response.data);
             });
         }

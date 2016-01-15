@@ -25,6 +25,10 @@ server {
     location / {
         try_files $uri /index.html;
     }
+
+    location /api {
+        proxy_pass http://API_SERVER:PORT;
+    }
     
     error_log PATH_TO_ERROR_LOG_FILE;
     access_log PATH_TO_ACCESS_LOG_FILE;

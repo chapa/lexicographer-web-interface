@@ -1,13 +1,14 @@
 define([], function() {
     'use strict';
 
-    function GlobalFiltersService ($http) {
+    function GlobalFiltersService ($http, $filter) {
         var service = {
             getPromise: getPromise,
             getGenres:  getGenres,
             getAuthors: getAuthors,
             hasChanged: hasChanged,
-            reset:      reset
+            reset:      reset,
+            getParams:  getParams
         };
 
         var defaults = {
@@ -18,11 +19,11 @@ define([], function() {
         };
 
         var genres = [];
-        var promise = $http.get('data/ends_dates.json').then(function (response) {
+        var promise = $http.get('/api/date_brackets').then(function (response) {
             defaults.startDate = new Date(response.data.first_date + ' 0:0');
             defaults.endDate = new Date(response.data.last_date + ' 0:0');
 
-            return $http.get('data/genres.json').then(function (response) {
+            return $http.get('/api/genres').then(function (response) {
                 genres = response.data;
 
                 angular.forEach(defaults, function (value, key) {
@@ -42,11 +43,12 @@ define([], function() {
         }
 
         function getAuthors (search) {
-            return $http.get('data/authors.json').then(function (response) {
-                return response.data.filter(function (author) {
-                    // Lors de l'appel à l'API, les données n'auront pas à être filtrées
-                    return author.name.indexOf(search) > -1;
-                });
+            return $http.get('/api/authors', {
+                params: {
+                    name_query: search
+                }
+            }).then(function (response) {
+                return response.data;
             });
         }
 
@@ -56,14 +58,30 @@ define([], function() {
             } else {
                 return service[filterName] !== defaults[filterName];
             }
-        };
+        }
 
         function reset (filterName) {
             service[filterName] = defaults[filterName];
-        };
+        }
+
+        function getParams () {
+            var params = {};
+
+            if (hasChanged('startDate')) {
+                params.start_date = $filter('date')(service.startDate, 'yyyy-MM-dd');
+            } if (hasChanged('endDate')) {
+                params.end_date = $filter('date')(service.endDate, 'yyyy-MM-dd');
+            } if (service.genre) {
+                params.genre = service.genre;
+            } if (service.author) {
+                params.author = service.author;
+            }
+
+            return params;
+        }
     }
 
-    GlobalFiltersService.$inject = ['$http'];
+    GlobalFiltersService.$inject = ['$http', '$filter'];
 
     return GlobalFiltersService;
 });

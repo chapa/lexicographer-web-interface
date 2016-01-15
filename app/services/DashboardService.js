@@ -23,8 +23,9 @@ define([], function() {
         }
 
         function update () {
-            // Utilisation de GlobalFiltersService pour récupérer les paramètres de la requête à l'API
-            return $http.get('data/dashboard.json').then(function (response) {
+            return $http.get('/api/dashboard', {
+                params: GlobalFiltersService.getParams()
+            }).then(function (response) {
                 response.data.date_first_book = new Date(response.data.date_first_book);
                 response.data.date_last_book = new Date(response.data.date_last_book);
                 setData(response.data);
