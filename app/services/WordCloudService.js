@@ -10,12 +10,16 @@ define([], function() {
             offUpdate:  offUpdate
         };
 
-        var callbacks = [], data = {};
+        var callbacks = [], data = null;
 
         return service;
 
         function getPromise () {
-            return GlobalFiltersService.getPromise().then(update);
+            return GlobalFiltersService.getPromise().then(function () {
+                if (data === null) {
+                    return update();
+                }
+            });
         }
 
         function getData () {
