@@ -20,8 +20,8 @@ define([], function() {
 
         var genres = [];
         var promise = $http.get('/api/date_brackets').then(function (response) {
-            defaults.startDate = new Date(response.data.first_date + ' 0:0');
-            defaults.endDate = new Date(response.data.last_date + ' 0:0');
+            defaults.startDate = new Date(response.data.first_date);
+            defaults.endDate = new Date(response.data.last_date);
 
             return $http.get('/api/genres').then(function (response) {
                 genres = response.data;
@@ -54,7 +54,9 @@ define([], function() {
 
         function hasChanged (filterName) {
             if (service[filterName] instanceof Date) {
-                return service[filterName].getTime() !== defaults[filterName].getTime();
+                return service[filterName].getYear() !== defaults[filterName].getYear()
+                    || service[filterName].getMonth() !== defaults[filterName].getMonth()
+                    || service[filterName].getDate() !== defaults[filterName].getDate();
             } else {
                 return service[filterName] !== defaults[filterName];
             }
