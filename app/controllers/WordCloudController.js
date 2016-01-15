@@ -6,10 +6,14 @@ define([], function() {
 
         vm.templateUrl   = 'templates/word-cloud.html'
         vm.globalFilters = GlobalFiltersService;
-        
+        vm.reloadWordCloud = reloadWordCloud;
+
         vm.words = WordCloudService.getData();
         WordCloudService.onUpdate(onDataUpdated);
-        vm.reloadWordCloud = reloadWordCloud;
+
+        $scope.$on('$destroy', function () {
+            WordCloudService.offUpdate(onDataUpdated);
+        });
 
         function onDataUpdated (data) {
             vm.words = data;
