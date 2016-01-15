@@ -9,6 +9,7 @@
                     <label for="global-filter-start-date">Date de début</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="global-filter-start-date" ng-model="vm.globalFilters.startDate"
+                               min-date="vm.globalFilters.minDate" max-date="vm.globalFilters.endDate"
                                uib-datepicker-popup="dd/MM/yyyy" is-open="startDatePickerOpen">
                         <span class="input-group-btn">
                             <a href="#" class="btn btn-default" ng-click="startDatePickerOpen = !startDatePickerOpen"
@@ -28,6 +29,7 @@
                     <label for="global-filter-end-date">Date de fin</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="global-filter-end-date" ng-model="vm.globalFilters.endDate"
+                               min-date="vm.globalFilters.startDate" max-date="vm.globalFilters.maxDate"
                                uib-datepicker-popup="dd/MM/yyyy" is-open="endDatePickerOpen">
                         <span class="input-group-btn">
                             <a href="#" class="btn btn-default" ng-click="endDatePickerOpen = !endDatePickerOpen"

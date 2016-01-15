@@ -20,8 +20,8 @@ define([], function() {
 
         var genres = [];
         var promise = $http.get('/api/date_brackets').then(function (response) {
-            defaults.startDate = new Date(response.data.first_date);
-            defaults.endDate = new Date(response.data.last_date);
+            service.minDate = defaults.startDate = new Date(response.data.first_date);
+            service.maxDate = defaults.endDate = new Date(response.data.last_date);
 
             return $http.get('/api/genres').then(function (response) {
                 genres = response.data;
