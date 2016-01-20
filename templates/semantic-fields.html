@@ -1,8 +1,14 @@
 <div class="alert alert-warning" role="alert">
-    <strong>Partie des champs sémantique</strong> En chantier, tout le travail reste à faire :-)
+    <strong>En chantier</strong> Les données sont fictives
     <a href="/" class="btn btn-xs btn-default pull-right">Retour à l'accueil</a>
 </div>
 
 <div id="semantic-fields">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <input type="text" class="form-control text-center" ng-model="vm.data.center" uib-typeahead="word as word.value for word in vm.getWords($viewValue)"
+                   typeahead-editable="false" typeahead-select-on-exact="true" typeahead-on-select="vm.onWordSelect($item)">
+        </div>
+    </div>
     <div td-browsable-graph="vm.data"></div>
 </div>

@@ -55,6 +55,7 @@ define([], function () {
                 .links(data.links)
                 .size([width, height])
                 .on('tick', tick)
+                .start().stop()
             ;
 
             var links = svg.append('g').attr('class', 'links').selectAll('line'),
@@ -62,7 +63,31 @@ define([], function () {
 
             update();
 
+            scope.$on('app.graph.reload', function () {
+                update();
+            });
+
             function update () {
+                var visited = [];
+                (function recurse (d, depth) {
+                    if (visited.indexOf(d) >= 0) {
+                        if (d.depth <= depth) {
+                            return;
+                        }
+                    }
+
+                    d.depth = depth;
+                    visited.push(d);
+
+                    data.links.forEach(function (link) {
+                        if (link.source === d) {
+                            recurse(link.target, depth + 1);
+                        } else if (link.target === d) {
+                            recurse(link.source, depth + 1);
+                        }
+                    });
+                })(data.center, 0);
+
                 force
                     .linkDistance(function (d) {
                         return scales.force.linkDistance(Math.min(d.source.depth, d.target.depth));
@@ -99,25 +124,8 @@ define([], function () {
                     .on('click', function (d) {
                         if (d3.event.defaultPrevented || d.depth >= 2) return;
 
-                        var visited = [];
-                        (function recurse (d, depth) {
-                            if (visited.indexOf(d) >= 0) {
-                                if (d.depth <= depth) {
-                                    return;
-                                }
-                            }
-
-                            d.depth = depth;
-                            visited.push(d);
-
-                            data.links.forEach(function (link) {
-                                if (link.source === d) {
-                                    recurse(link.target, depth + 1);
-                                } else if (link.target === d) {
-                                    recurse(link.source, depth + 1);
-                                }
-                            });
-                        })(d, 0);
+                        data.center = d;
+                        scope.$apply('data.center');
 
                         update();
                     })
