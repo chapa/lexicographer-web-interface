@@ -62,18 +62,13 @@ define([], function () {
                 nodes = svg.append('g').attr('class', 'nodes').selectAll('g');
 
             update();
-
-            scope.$on('app.graph.reload', function () {
-                update();
-            });
+            scope.$on('app.graph.reload', update);
 
             function update () {
                 var visited = [];
                 (function recurse (d, depth) {
-                    if (visited.indexOf(d) >= 0) {
-                        if (d.depth <= depth) {
-                            return;
-                        }
+                    if (!angular.isObject(d) || visited.indexOf(d) >= 0 && d.depth <= depth) {
+                        return;
                     }
 
                     d.depth = depth;
@@ -126,8 +121,6 @@ define([], function () {
 
                         data.center = d;
                         scope.$apply('data.center');
-
-                        update();
                     })
                     .call(force.drag)
                 ;

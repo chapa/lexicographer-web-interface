@@ -1,7 +1,7 @@
 define([], function() {
     'use strict';
 
-    function SemanticFieldsController ($scope, GlobalFiltersService) {
+    function SemanticFieldsController ($scope, $http, GlobalFiltersService) {
         var vm = this;
 
         vm.templateUrl   = 'templates/semantic-fields.html';
@@ -11,48 +11,68 @@ define([], function() {
         vm.onWordSelect = onWordSelect;
 
         vm.data = {
-            nodes: [
-                { value: 'Un' }, { value: 'Deux' }, { value: 'Trois' }, { value: 'Quatre' }, { value: 'Cinq' },
-                { value: 'Six' }, { value: 'Sept' }, { value: 'Huit' }, { value: 'Neuf' }, { value: 'Dix' }
-            ],
-            links: [
-                { source: 0, target: 1 }, { source: 0, target: 2 }, { source: 0, target: 3 }, { source: 1, target: 4 },
-                { source: 1, target: 5 }, { source: 4, target: 6 }, { source: 4, target: 7 }, { source: 4, target: 8 },
-                { source: 2, target: 9 }, { source: 3, target: 1 }
-            ],
+            nodes: [],
+            links: [],
             center: null
         };
-        vm.data.center = vm.data.nodes[0];
+
+        $scope.$watch('vm.data.center', function (value) {
+            if (angular.isObject(value)) {
+                onWordSelect(value);
+            }
+        })
 
         function getWords (search) {
-            return [
-                { value: 'Un' },
-                { value: 'Deux' },
-                { value: 'Trois' },
-                { value: 'Quatre' },
-                { value: 'Cinq' },
-                { value: 'Six' },
-                { value: 'Sept' },
-                { value: 'Huit' },
-                { value: 'Neuf' },
-                { value: 'Dix' },
-                { value: 'Onze' },
-                { value: 'Douze' }
-            ].filter(function (word) {
-                return word.value.match(new RegExp(search, 'i'));
-            }).map(function (word) {
-                return vm.data.nodes.find(function (node) {
-                    return node.value === word.value
-                }) || word;
+            return $http.get('/api/words', {
+                params: {
+                    query: search
+                }
+            }).then(function (response) {
+                return response.data.filter(function (word) {
+                    return word.match(new RegExp(search, 'i'));
+                }).map(function (word) {
+                    return vm.data.nodes.find(function (node) {
+                        return node.value === word
+                    }) || { value: word };
+                });;
             });
         }
 
         function onWordSelect (word) {
-            $scope.$broadcast('app.graph.reload');
+            if (vm.data.nodes.indexOf(word) < 0) {
+                vm.data.nodes.push(word);
+            }
+
+            $http.get('/api/semantic-fields', {
+                params: {
+                    word: word.value
+                }
+            }).then(function (response) {
+                response.data.forEach(function (linkedWord) {
+                    var linkedNode = vm.data.nodes.find(function (node) {
+                        return node.value === linkedWord;
+                    });
+
+                    if (!linkedNode) {
+                        vm.data.nodes.push(linkedNode = { value: linkedWord });
+                    }
+
+                    if (!vm.data.links.find(function (link) {
+                        return link.source === word && link.target === linkedNode || link.source === linkedNode && link.target === word;
+                    })) {
+                        vm.data.links.push({
+                            source: word,
+                            target: linkedNode
+                        })
+                    }
+                });
+
+                $scope.$broadcast('app.graph.reload');
+            });
         }
     }
 
-    SemanticFieldsController.$inject = ['$scope', 'GlobalFiltersService'];
+    SemanticFieldsController.$inject = ['$scope', '$http', 'GlobalFiltersService'];
 
     return SemanticFieldsController;
 });

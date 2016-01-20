@@ -6,8 +6,9 @@
 <div id="semantic-fields">
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
-            <input type="text" class="form-control text-center" ng-model="vm.data.center" uib-typeahead="word as word.value for word in vm.getWords($viewValue)"
-                   typeahead-editable="false" typeahead-select-on-exact="true" typeahead-on-select="vm.onWordSelect($item)">
+            <input type="text" class="form-control text-center" ng-model="vm.data.center"
+                   uib-typeahead="word as word.value for word in vm.getWords($viewValue)"
+                   typeahead-editable="false" typeahead-select-on-exact="true">
         </div>
     </div>
     <div td-browsable-graph="vm.data"></div>
