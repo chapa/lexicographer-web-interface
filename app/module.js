@@ -5,12 +5,13 @@ define([
     'app/services/StatisticsService',
     'app/services/WordCloudService',
     'app/directives/WordCloudDirective',
+    'app/directives/BrowsableGraphDirective',
     'app/controllers/TopbarController',
     'app/controllers/DashboardController',
     'app/controllers/StatisticsController',
     'app/controllers/WordCloudController',
     'app/controllers/SemanticFieldsController',
-], function(router, GlobalFiltersService, DashboardService, StatisticsService, WordCloudService, WordCloudDirective, TopbarController, DashboardController, StatisticsController, WordCloudController, SemanticFieldsController) {
+], function(router, GlobalFiltersService, DashboardService, StatisticsService, WordCloudService, WordCloudDirective, BrowsableGraphDirective, TopbarController, DashboardController, StatisticsController, WordCloudController, SemanticFieldsController) {
     'use strict';
 
     var app = angular.module('app', ['ngRoute', 'ui.bootstrap']);
@@ -20,7 +21,8 @@ define([
     app.factory('DashboardService',     DashboardService);
     app.factory('StatisticsService',    StatisticsService);
     app.factory('WordCloudService',     WordCloudService);
-    app.directive('tdWordCloud', WordCloudDirective);
+    app.directive('tdWordCloud',      WordCloudDirective);
+    app.directive('tdBrowsableGraph', BrowsableGraphDirective);
     app.controller('TopbarController',         TopbarController);
     app.controller('DashboardController',      DashboardController);
     app.controller('StatisticsController',     StatisticsController);

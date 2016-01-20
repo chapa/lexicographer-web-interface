@@ -23,6 +23,7 @@
     "requirejs": "~2.1.22",
     "angular-route": "~1.4.8",
     "angular-bootstrap": "~0.14.3",
-    "wordcloud2": "git://github.com/timdream/wordcloud2.js#~1.0.1"
+    "wordcloud2": "git://github.com/timdream/wordcloud2.js#~1.0.1",
+    "d3": "~3.5.12"
   }
 }
