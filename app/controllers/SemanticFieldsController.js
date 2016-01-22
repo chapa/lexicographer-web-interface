@@ -1,78 +1,35 @@
 define([], function() {
     'use strict';
 
-    function SemanticFieldsController ($scope, $http, GlobalFiltersService) {
+    function SemanticFieldsController ($scope, $http, GlobalFiltersService, SemanticFieldsService) {
         var vm = this;
 
         vm.templateUrl   = 'templates/semantic-fields.html';
         vm.globalFilters = GlobalFiltersService;
 
-        vm.getWords = getWords;
-        vm.onWordSelect = onWordSelect;
+        vm.getWords = SemanticFieldsService.getWords;
 
-        vm.data = {
-            nodes: [],
-            links: [],
-            center: null
-        };
+        vm.data = SemanticFieldsService.getData();
+        SemanticFieldsService.onUpdate(onDataUpdated);
+
+        $scope.$on('$destroy', function () {
+            SemanticFieldsService.offUpdate(onDataUpdated);
+        });
+
+        function onDataUpdated (data) {
+            $scope.$broadcast('app.graph.reload');
+        }
 
         $scope.$watch('vm.data.center', function (value) {
             if (angular.isObject(value)) {
-                onWordSelect(value);
-            }
-        })
-
-        function getWords (search) {
-            return $http.get('/api/words', {
-                params: {
-                    query: search
-                }
-            }).then(function (response) {
-                return response.data.filter(function (word) {
-                    return word.match(new RegExp(search, 'i'));
-                }).map(function (word) {
-                    return vm.data.nodes.find(function (node) {
-                        return node.value === word
-                    }) || { value: word };
-                });;
-            });
-        }
-
-        function onWordSelect (word) {
-            if (vm.data.nodes.indexOf(word) < 0) {
-                vm.data.nodes.push(word);
-            }
-
-            $http.get('/api/semantic-fields', {
-                params: {
-                    word: word.value
-                }
-            }).then(function (response) {
-                response.data.forEach(function (linkedWord) {
-                    var linkedNode = vm.data.nodes.find(function (node) {
-                        return node.value === linkedWord;
-                    });
-
-                    if (!linkedNode) {
-                        vm.data.nodes.push(linkedNode = { value: linkedWord });
-                    }
-
-                    if (!vm.data.links.find(function (link) {
-                        return link.source === word && link.target === linkedNode || link.source === linkedNode && link.target === word;
-                    })) {
-                        vm.data.links.push({
-                            source: word,
-                            target: linkedNode
-                        })
-                    }
+                SemanticFieldsService.retreive(value).then(function () {
+                    $scope.$broadcast('app.graph.reload');
                 });
-
-                $scope.$broadcast('app.graph.reload');
-            });
-        }
+            }
+        });
     }
 
-    SemanticFieldsController.$inject = ['$scope', '$http', 'GlobalFiltersService'];
+    SemanticFieldsController.$inject = ['$scope', '$http', 'GlobalFiltersService', 'SemanticFieldsService'];
 
     return SemanticFieldsController;
 });

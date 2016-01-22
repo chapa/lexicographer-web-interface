@@ -84,6 +84,8 @@ define([], function () {
                 })(data.center, 0);
 
                 force
+                    .nodes(data.nodes)
+                    .links(data.links)
                     .linkDistance(function (d) {
                         return scales.force.linkDistance(Math.min(d.source.depth, d.target.depth));
                     })
