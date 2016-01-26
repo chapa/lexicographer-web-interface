@@ -27,7 +27,8 @@ define([], function () {
         }
 
         function controllerFunc ($scope, $window) {
-            var vm = this;
+            var vm = this,
+                d3 = $window.d3;
 
             vm.setElement = setElement;
 
@@ -38,9 +39,15 @@ define([], function () {
                     return;
                 }
 
+                var values = Object.keys(_words_).map(function (key) { return _words_[key]; });
+                var scale = d3.scale.linear()
+                    .domain([d3.min(values), d3.max(values)])
+                    .range([3, 20])
+                ;
+
                 words = [];
                 angular.forEach(_words_, function (count, word) {
-                    words.push([word, count]);
+                    words.push([word, scale(count)]);
                 });
                 drawWordCloud();
             });
