@@ -49,6 +49,10 @@ define([], function () {
                 angular.forEach(_words_, function (count, word) {
                     words.push([word, scale(count)]);
                 });
+                words.sort(function (a, b) {
+                    return b[1] - a[1];
+                });
+
                 drawWordCloud();
             });
 
