@@ -80,7 +80,7 @@ define([], function () {
                     list: words,
                     gridSize: Math.round(16 * element.attr('width') / 1024),
                     weightFactor: function (size) {
-                        return size * element.attr('width') / 250;
+                        return size * element.attr('width') / 125;
                     },
                     rotateRatio: 0.5,
                     wait: 30,

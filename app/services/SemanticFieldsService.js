@@ -29,13 +29,11 @@ define([], function() {
                     query: search
                 }
             }).then(function (response) {
-                return response.data.filter(function (word) {
-                    return word.match(new RegExp(search, 'i'));
-                }).map(function (word) {
+                return angular.isArray(response.data) ? response.data.map(function (word) {
                     return data.nodes.find(function (node) {
                         return node.value === word
                     }) || { value: word };
-                });;
+                }) : [];
             });
         }
 
