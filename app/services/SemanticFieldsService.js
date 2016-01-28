@@ -43,9 +43,9 @@ define([], function() {
             }
 
             return $http.get('/api/semantic-fields', {
-                params: {
+                params: angular.extend({
                     word: word.value
-                }
+                }, GlobalFiltersService.getParams())
             }).then(function (response) {
                 response.data.forEach(function (linkedWord) {
                     var linkedNode = data.nodes.find(function (node) {
